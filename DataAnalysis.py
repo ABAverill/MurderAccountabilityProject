@@ -38,5 +38,13 @@ for i in range(0,9):
 smry_new = smry.transpose()
 smry_new1 = smry_new.drop('Total_Murders')
 
-fig = px.line(smry_new1, x = 'Index', y = 'Murders')
-fig.show
+smry_new1.columns = smry_new1.iloc[0] 
+
+smry_new1 = smry_new1[1:]
+smry_new1 = smry_new1.reset_index()
+
+fig = px.line(smry_new1, x = 'index', y = Divisions, title = 'Murders by Year', labels={'x': 'Year', 'y':'Murders'})
+fig.update_layout(
+    xaxis_title="Year", yaxis_title="Murders"
+)
+fig.show()
